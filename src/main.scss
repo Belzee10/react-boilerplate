@@ -1,4 +1,41 @@
+body,
+html {
+  height: 100%;
+  margin: 0;
+}
+
 body {
   background-color: rgb(25, 25, 27);
   color: white;
+}
+
+#app {
+  display: flex;
+  justify-content: center;
+  padding-top: 5rem;
+  h2 {
+    font-size: 32px;
+    margin-top: 0;
+  }
+  ul {
+    padding: 0;
+    margin-bottom: 0;
+    li {
+      list-style: none;
+      font-size: 14px;
+      color: rgb(216, 216, 216);
+    }
+  }
+}
+
+.main {
+  border: 1px solid rgb(185, 185, 185);
+  border-radius: 2px;
+  padding: 1rem;
+}
+
+.image {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
 }

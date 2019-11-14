@@ -3,10 +3,15 @@ const WebpackBar = require("webpackbar");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
-const PurifyCSSPlugin = require("purifycss-webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const PurgecssPlugin = require("purgecss-webpack-plugin");
 const glob = require("glob");
 const path = require("path");
+
+const PATHS = {
+  src: path.join(__dirname, "../", "src")
+};
 
 module.exports = {
   mode: "production",
@@ -16,6 +21,7 @@ module.exports = {
       new OptimizeCssAssetsPlugin(),
       new TerserPlugin(),
       new HtmlWebpackPlugin({
+        title: "React Boilerplate",
         template: "src/index.html",
         minify: {
           removeAttributeQuotes: true,
@@ -30,6 +36,12 @@ module.exports = {
           test: /[\\/]node_modules[\\/]/,
           name: "vendor",
           chunks: "initial"
+        },
+        styles: {
+          name: "styles",
+          test: /\.css$/,
+          chunks: "all",
+          enforce: true
         }
       }
     }
@@ -46,12 +58,11 @@ module.exports = {
     new Dotenv({
       path: ".env.production"
     }),
+    new CleanWebpackPlugin(),
     new WebpackBar({ name: "Buiding Production" }),
     new MiniCssExtractPlugin({ filename: "styles/[name].css" }),
-    new PurifyCSSPlugin({
-      paths: glob.sync(`${path.join(__dirname, "src")}/**/*.js`, {
-        nodir: true
-      })
+    new PurgecssPlugin({
+      paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true })
     })
   ]
 };
