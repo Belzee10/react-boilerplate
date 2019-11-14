@@ -24,8 +24,9 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
+      title: "React Boilerplate",
       template: "src/index.html"
     }),
-    new FaviconsWebpackPlugin("src/assets/logo.png")
+    new FaviconsWebpackPlugin("./src/assets/logo.png")
   ]
 };
