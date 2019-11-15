@@ -1,28 +1,28 @@
-const Dotenv = require("dotenv-webpack");
-const WebpackBar = require("webpackbar");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const TerserPlugin = require("terser-webpack-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const PurgecssPlugin = require("purgecss-webpack-plugin");
-const glob = require("glob");
-const path = require("path");
+const Dotenv = require('dotenv-webpack');
+const WebpackBar = require('webpackbar');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const PurgecssPlugin = require('purgecss-webpack-plugin');
+const glob = require('glob');
+const path = require('path');
 
 const PATHS = {
-  src: path.join(__dirname, "../", "src")
+  src: path.join(__dirname, '../', 'src')
 };
 
 module.exports = {
-  mode: "production",
-  devtool: "source-map",
+  mode: 'production',
+  devtool: 'source-map',
   optimization: {
     minimizer: [
       new OptimizeCssAssetsPlugin(),
       new TerserPlugin(),
       new HtmlWebpackPlugin({
-        title: "React Boilerplate",
-        template: "src/index.html",
+        title: 'React Boilerplate',
+        template: 'src/index.html',
         minify: {
           removeAttributeQuotes: true,
           collapseWhitespace: true,
@@ -34,13 +34,13 @@ module.exports = {
       cacheGroups: {
         commons: {
           test: /[\\/]node_modules[\\/]/,
-          name: "vendor",
-          chunks: "initial"
+          name: 'vendor',
+          chunks: 'initial'
         },
         styles: {
-          name: "styles",
+          name: 'styles',
           test: /\.css$/,
-          chunks: "all",
+          chunks: 'all',
           enforce: true
         }
       }
@@ -50,24 +50,24 @@ module.exports = {
     rules: [
       {
         test: /\.scss$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
       },
       {
         test: /\.(png|jpg|svg|gif)$/,
-        loader: "file-loader",
+        loader: 'file-loader',
         options: {
-          name: "assets/[name].[hash].[ext]"
+          name: 'assets/[name].[hash].[ext]'
         }
       }
     ]
   },
   plugins: [
     new Dotenv({
-      path: ".env.production"
+      path: '.env.production'
     }),
     new CleanWebpackPlugin(),
-    new WebpackBar({ name: "Buiding Production" }),
-    new MiniCssExtractPlugin({ filename: "styles/[name].css" }),
+    new WebpackBar({ name: 'Buiding Production' }),
+    new MiniCssExtractPlugin({ filename: 'styles/[name].css' }),
     new PurgecssPlugin({
       paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true })
     })

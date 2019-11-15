@@ -1,11 +1,11 @@
-const Dotenv = require("dotenv-webpack");
-const WebpackBar = require("webpackbar");
-const ErrorOverlayPlugin = require("error-overlay-webpack-plugin");
-const webpack = require("webpack");
+const Dotenv = require('dotenv-webpack');
+const WebpackBar = require('webpackbar');
+const ErrorOverlayPlugin = require('error-overlay-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
-  mode: "development",
-  devtool: "cheap-module-source-map",
+  mode: 'development',
+  devtool: 'cheap-module-source-map',
   devServer: {
     open: true,
     hot: true,
@@ -24,11 +24,11 @@ module.exports = {
     rules: [
       {
         test: /\.scss$/,
-        use: ["style-loader", "css-loader", "sass-loader"]
+        use: ['style-loader', 'css-loader', 'sass-loader']
       },
       {
         test: /\.(png|jpg|svg|gif)$/,
-        loader: "url-loader",
+        loader: 'url-loader',
         options: {
           limit: 25000
         }
@@ -37,9 +37,9 @@ module.exports = {
   },
   plugins: [
     new Dotenv({
-      path: ".env"
+      path: '.env'
     }),
-    new WebpackBar({ name: "Running Dev Server" }),
+    new WebpackBar({ name: 'Running Dev Server' }),
     new ErrorOverlayPlugin(),
     new webpack.HotModuleReplacementPlugin()
   ]

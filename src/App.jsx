@@ -1,6 +1,6 @@
-import React from "react";
-import features from "./features";
-import logo from "./assets/logo.png";
+import React from 'react';
+import features from './features';
+import logo from './assets/logo.png';
 
 const App = ({ msg }) => {
   return (
@@ -12,7 +12,7 @@ const App = ({ msg }) => {
         <h2>{msg}</h2>
         <ul>
           {features.map(item => (
-            <li key={item}>- {item}</li>
+            <li key={item}>-{item}</li>
           ))}
         </ul>
       </div>
