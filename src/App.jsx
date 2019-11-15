@@ -11,7 +11,7 @@ const App = ({ msg }) => {
       <div className="main">
         <h2>{msg}</h2>
         <ul>
-          {features.map(item => (
+          {features.map(ite => (
             <li key={item}>-{item}</li>
           ))}
         </ul>
