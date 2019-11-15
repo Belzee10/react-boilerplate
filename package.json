@@ -8,7 +8,7 @@
   "scripts": {
     "start": "webpack-dev-server --env.env=dev",
     "build": "webpack --env.env=prod",
-    "lint": "eslint src",
+    "lint": "npx eslint --ext .jsx,.js src/",
     "format": "npm run prettier -- --write",
     "prettier": "prettier \"**/*.+(js|jsx|json|css|scss|md)\"",
     "validate": "npm run lint && npm run prettier -- --list-different"
