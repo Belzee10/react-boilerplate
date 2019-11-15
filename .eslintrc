@@ -6,7 +6,10 @@
     "commonjs": true
   },
   "parserOptions": {
-    "ecmaVersion": 6
+    "ecmaVersion": 6,
+    "ecmaFeatures": {
+      "jsx": true
+    }
   },
   "parser": "babel-eslint",
   "plugins": ["react-hooks"],
@@ -16,6 +19,11 @@
     "eslint-config-prettier",
     "prettier"
   ],
+  "settings": {
+    "react": {
+      "version": "detect" // React version. "detect" automatically picks the version you have installed.
+    }
+  },
   "rules": {
     "react/prop-types": "warn",
     "react-hooks/rules-of-hooks": "error",
